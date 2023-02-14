@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import { exit } from 'process';
-import { Builder } from './build';
+
+import { BuildDispatcher } from './build-dispatcher';
 import * as init from './init';
 import { publish } from './publish';
 
@@ -31,7 +32,7 @@ program
     .option('-d, --assets-dir <directory>', 'path to static assets')
     .option('-s, --static-site', 'build static site function')
     .action(async (options) => {
-        exit(await Builder.exec(options));
+        exit(await BuildDispatcher.exec(options));
     });
 
 program
